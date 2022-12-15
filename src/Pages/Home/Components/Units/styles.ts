@@ -9,8 +9,8 @@ export const UnitsContainer = styled.div`
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 3rem;
+  justify-content: left;
+  padding: 0 1rem;
   box-shadow: 0px 22px 5px -10px rgba(0, 0, 0, 0.25);
 `;
 
@@ -22,6 +22,7 @@ export const Title = styled.span`
 
 export const ButtonsContainer = styled.div`
   min-width: 500px;
+  margin-left: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

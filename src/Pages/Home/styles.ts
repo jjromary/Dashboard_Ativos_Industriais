@@ -44,11 +44,17 @@ export const LeftContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 2px solid red;
 
   :first-child {
     margin-bottom: 1.5rem;
   }
+`;
+
+export const GraficContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const ContentInfo = styled.div`
@@ -72,29 +78,27 @@ export const ContentInfo = styled.div`
 `;
 
 export const MidleContent = styled.div`
-  width: 345px;
-  height: 750px;
+  width: 100%;
+  height: 45%;
   background: transparent;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  border: 2px solid red;
 `;
 export const RightContent = styled.div`
-  width: 445px;
-  height: 750px;
+  width: 100%;
+  height: 45%;
   background: transparent;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid red;
 `;
 
 export const TopContent = styled.div`
   display: flex;
-  width: 345px;
+  width: 49%;
   flex-direction: row;
   justify-content: space-between;
 `;
