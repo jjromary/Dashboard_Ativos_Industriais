@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const UnitsContainer = styled.div`
-  width: 90%;
+  width: 100%;
   height: 69px;
   background: ${(props) => props.theme["blue-500"]};
   border-radius: 0.625rem;
