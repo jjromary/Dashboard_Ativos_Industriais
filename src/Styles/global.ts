@@ -15,12 +15,13 @@ export const GlobalStyles = createGlobalStyle`
 
     body {
         background-color: ${(props) => props.theme["default-background"]};
-        color: ${(props) => props.theme["text-base"]};
+        color: ${(props) => props.theme["blue-500"]};
         -webkit-font-smoothing: antialiased;
+        overflow: hidden;
     }
 
     body, input, text-area, button {
-        font: 400 1rem Roboto, sans-serif;
+        font: 400 1rem Poppins, sans-serif;
     }
 
     button{
