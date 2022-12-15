@@ -6,5 +6,6 @@ export const defaultTheme = {
   "blue-900": "#07074E",
 
   "default-background": "#CCD5DA",
+  "card-dashboard-background": "#E5EAEC",
   "button-hover": "#B2DBF1",
 } as const;

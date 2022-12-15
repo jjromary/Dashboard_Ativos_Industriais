@@ -1,5 +1,4 @@
 import Button from "../../../../Components/Button";
-import AssestList from "../AssetsList";
 import { ButtonsContainer, Title, UnitsContainer } from "./styles";
 
 export default function Units() {

@@ -21,7 +21,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body, input, text-area, button {
-        font: 400 1rem Roboto, sans-serif;
+        font: 400 1rem Poppins, sans-serif;
     }
 
     button{
