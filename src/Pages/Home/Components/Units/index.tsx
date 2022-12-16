@@ -1,13 +1,24 @@
-import Button from "../../../../Components/Button";
-import { ButtonsContainer, Title, UnitsContainer } from "./styles";
+import { useContext } from "react";
+import { AssetsContext } from "../../../../Context/AssetsContext";
+import { Button, ButtonsContainer, Title, UnitsContainer } from "./styles";
+
 
 export default function Units() {
+  const { units } = useContext(AssetsContext);
+  console.log(units)
+
+
   return (
     <UnitsContainer>
       <Title>Unidades</Title>
       <ButtonsContainer>
-        <Button title="Unidade Jaguar" />
-        <Button title="Unidade Tobias" />
+        {units.map((unit) => {
+          return (
+            <Button key={unit.id} type="submit">
+              {unit.name}
+            </Button>
+          )
+        })}
       </ButtonsContainer>
     </UnitsContainer>
   )

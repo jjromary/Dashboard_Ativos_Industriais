@@ -1,6 +1,8 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
+import { api } from "../Lib/axios";
 
 interface Assets {
+  id: number;
   sensors: string;
   model: string;
   status: string;
@@ -12,10 +14,16 @@ interface Assets {
   totalUptime: number;
   lastUptimeAt: Date;
   companyId: number;
+  unitId: number;
 }
-
+interface Units {
+  id: number,
+  name: string,
+  companyId: number;
+}
 interface AssetsContextType {
   assets: Assets[];
+  units: Units[];
 }
 
 interface AssetsProviderProps {
@@ -27,21 +35,27 @@ export const AssetsContext = createContext({} as AssetsContextType)
 export function AssetsProvider({ children }: AssetsProviderProps) {
 
   const [assets, setAssets] = useState<Assets[]>([])
+  const [units, setUnits] = useState<Units[]>([])
 
   async function loadAssets() {
-    const response = await fetch('https://my-json-server.typicode.com/tractian/fake-api/assets/3')
-    const data = await response.json();
+    const response = await api.get('/assets')
 
-    setAssets(data)
+    setAssets(response.data)
   }
 
+  async function loadUnits() {
+    const repsonse = await api.get('/units')
+
+    setUnits(repsonse.data)
+  }
   useEffect(() => {
     loadAssets()
+    loadUnits()
   }, [])
 
 
   return (
-    <AssetsContext.Provider value={{ assets }}>
+    <AssetsContext.Provider value={{ assets, units }}>
       {children}
     </AssetsContext.Provider>
   )

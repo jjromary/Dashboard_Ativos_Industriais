@@ -1,19 +1,33 @@
+import { useContext } from 'react';
 import ativo from '../../../../Assets/ativo.svg'
 import CardAssets from "../../../../Components/CardAssets";
 import CardDashboard from "../../../../Components/CardDashboard";
+import { AssetsContext } from '../../../../Context/AssetsContext';
 import { BottomContent, CardsContainer, ContentInfo, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
 
 export default function DashBoardAsset() {
+  const { assets } = useContext(AssetsContext);
+
+  console.log("assets", assets)
+
+
   return (
     <InfoContainer>
       <CardDashboard height="750px" width="230px" title="Ativos" fontSize="1.5rem">
         <CardsContainer>
-          <CardAssets />
-          <CardAssets />
-          <CardAssets />
-          <CardAssets />
-          <CardAssets />
-          <CardAssets />
+          {assets.map((asset) => {
+            return (
+              <CardAssets
+                key={asset.id}
+                name={asset.name}
+                model={asset.model}
+                sensors={asset.sensors}
+                status={asset.status}
+              />
+
+            )
+          })}
+
         </CardsContainer>
 
       </CardDashboard>

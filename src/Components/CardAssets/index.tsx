@@ -1,19 +1,26 @@
 import { Attribute, CardAssetsContainer, ContentData, Name } from "./styles";
 
-export default function CardAssets() {
+interface CardAsstesProps {
+  name: string;
+  model: string;
+  sensors: string;
+  status: string;
+}
+
+export default function CardAssets({ name, model, sensors }: CardAsstesProps) {
   return (
     <CardAssetsContainer>
       <ContentData>
         <Attribute>Name: </Attribute>
-        <Name>Motor H13D-1</Name>
+        <Name>{name}</Name>
       </ContentData>
       <ContentData>
         <Attribute>Sensor: </Attribute>
-        <Name>GSJ1535</Name>
+        <Name>{sensors}</Name>
       </ContentData>
       <ContentData>
         <Attribute>Modelo: </Attribute>
-        <Name>Motor</Name>
+        <Name>{model}</Name>
       </ContentData>
     </CardAssetsContainer>
   )
