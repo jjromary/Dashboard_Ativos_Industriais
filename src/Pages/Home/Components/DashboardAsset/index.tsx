@@ -8,9 +8,6 @@ import { BottomContent, CardsContainer, ContentInfo, InfoContainer, LeftContent,
 export default function DashBoardAsset() {
   const { assets } = useContext(AssetsContext);
 
-  console.log("assets", assets)
-
-
   return (
     <InfoContainer>
       <CardDashboard height="750px" width="230px" title="Ativos" fontSize="1.5rem">
