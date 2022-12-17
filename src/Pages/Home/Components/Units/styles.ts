@@ -40,11 +40,8 @@ export const Unit = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  :hover {
-    filter: brightness(0.8);
-    transition: 0.5s;
-  }
+  pointer-events: none;
+  user-select: none;
 `;
 export const Button = styled.button`
   border: none;

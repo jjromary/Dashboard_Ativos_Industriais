@@ -9,12 +9,39 @@ interface Assets {
   healthscore: number;
   name: string;
   image: string;
-  maxTemp: number;
-  totalCollectsUptime: number;
-  totalUptime: number;
-  lastUptimeAt: Date;
-  companyId: number;
+  specifications: {
+    maxTemp: number;
+    power: number;
+    rpm: number;
+  }
+  metrics: {
+    totalCollectsUptime: number;
+    totalUptime: number;
+    lastUptimeAt: string;
+  }
   unitId: number;
+  companyId: number;
+}
+interface Asset {
+  id: number;
+  sensors: string;
+  model: string;
+  status: string;
+  healthscore: number;
+  name: string;
+  image: string;
+  specifications: {
+    maxTemp: number;
+    power: number;
+    rpm: number;
+  }
+  metrics: {
+    totalCollectsUptime: number;
+    totalUptime: number;
+    lastUptimeAt: string;
+  }
+  unitId: number;
+  companyId: number;
 }
 interface Units {
   id: number,
@@ -23,8 +50,10 @@ interface Units {
 }
 interface AssetsContextType {
   assets: Assets[];
+  asset: Assets | undefined | null;
   units: Units[];
   fetchAssets: (query?: string) => Promise<void>
+  loadAsset: (query?: string) => Promise<void>
 }
 
 interface AssetsProviderProps {
@@ -36,6 +65,7 @@ export const AssetsContext = createContext({} as AssetsContextType)
 export function AssetsProvider({ children }: AssetsProviderProps) {
 
   const [assets, setAssets] = useState<Assets[]>([])
+  const [asset, setAsset] = useState<Asset>()
   const [units, setUnits] = useState<Units[]>([])
 
   const fetchAssets = async (query?: string) => {
@@ -45,9 +75,17 @@ export function AssetsProvider({ children }: AssetsProviderProps) {
       }
     })
 
-
-
     setAssets(response.data)
+  }
+
+  const loadAsset = async (query?: string) => {
+    const response = await api.get(`/assets/${query}`, {
+      params: {
+        q: query
+      }
+    })
+
+    setAsset(response.data)
   }
 
   const loadUnits = async () => {
@@ -55,14 +93,16 @@ export function AssetsProvider({ children }: AssetsProviderProps) {
 
     setUnits(repsonse.data)
   }
+
   useEffect(() => {
+    loadAsset()
     fetchAssets()
     loadUnits()
   }, [])
 
 
   return (
-    <AssetsContext.Provider value={{ assets, units, fetchAssets }}>
+    <AssetsContext.Provider value={{ assets, asset, loadAsset, units, fetchAssets }}>
       {children}
     </AssetsContext.Provider>
   )

@@ -29,7 +29,6 @@ export default function Units() {
 
   const handleSearchUnitForm = async (data: UnitFormInput) => {
     await fetchAssets(data.query)
-    console.log("teste data", data)
   }
 
   return (
