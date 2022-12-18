@@ -4,7 +4,7 @@ import { CardDashboardContainer, Title } from "./styles";
 interface CardDashboardProps {
   width: string;
   height: string;
-  title: string;
+  title: string | undefined | null;
   fontSize: string;
   children: ReactNode;
 }
