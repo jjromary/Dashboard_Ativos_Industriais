@@ -1,22 +1,19 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import ativo from '../../../../Assets/ativo.svg'
 import CardAssets from "../../../../Components/CardAssets";
 import CardDashboard from "../../../../Components/CardDashboard";
 import { AssetsContext } from '../../../../Context/AssetsContext';
-import { dateFormatter } from '../../../../Utils/Formatter';
 import { BottomContent, CardsContainer, ContentInfo, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
 
 export default function DashBoardAsset() {
   const { assets } = useContext(AssetsContext);
   const { asset } = useContext(AssetsContext);
 
-  console.log("Asset date type", typeof asset?.metrics.lastUptimeAt)
 
-  const event = asset?.metrics.lastUptimeAt
 
-  event?.substring(1, 9)
-  console.log(event)
+  // console.log(asset?.metrics.lastUptimeAt.substring(0, 10).split("-").reverse().join("-"))
 
+  console.log("teste horas", asset?.metrics.lastUptimeAt.substring(11, 19))
 
   return (
     <InfoContainer>
@@ -40,8 +37,8 @@ export default function DashBoardAsset() {
       </CardDashboard>
 
       <LeftContent>
-        <CardDashboard width="400px" height="460px" title="Motor H13D-1" fontSize="1.5rem">
-          <img src={asset?.image} width="300px" height="250px" />
+        <CardDashboard width="450px" height="450px" title={asset?.name} fontSize="1.5rem">
+          <img src={asset?.image} width="350px" height="250px" />
           <ContentInfo>
             <p>Senso: <span>{asset?.sensors}</span></p>
           </ContentInfo>
@@ -52,7 +49,11 @@ export default function DashBoardAsset() {
             <p>Model: <span>{asset?.model}</span></p>
           </ContentInfo>
           <ContentInfo>
-            <p>Data da última coleta: <span>{asset?.metrics.lastUptimeAt}</span></p>
+            <p>Data da última coleta: <span>{asset?.metrics.lastUptimeAt ?
+              asset?.metrics.lastUptimeAt.substring(0, 10).split("-").reverse().join("-") + " - " + asset?.metrics.lastUptimeAt.substring(11, 19) :
+              ""}
+            </span>
+            </p>
           </ContentInfo>
         </CardDashboard>
 
@@ -82,7 +83,7 @@ export default function DashBoardAsset() {
               title="Temperatura Máxima"
               fontSize="1.5rem"
             >
-              <Value>{asset?.specifications.maxTemp + "ºc"}</Value>
+              <Value>{asset?.specifications.maxTemp ? asset?.specifications.maxTemp + "ºc" : ""}</Value>
             </CardDashboard>
 
             <CardDashboard
@@ -91,7 +92,7 @@ export default function DashBoardAsset() {
               title="Potência kWh"
               fontSize="1.5rem"
             >
-              <Value>{asset?.specifications.power ? asset?.specifications.power : "Valor não coletado"}</Value>
+              <Value>{asset?.specifications.power ? asset?.specifications.power : ""}</Value>
             </CardDashboard>
           </SpecificationsContent>
 

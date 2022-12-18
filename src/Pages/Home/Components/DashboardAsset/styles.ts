@@ -52,7 +52,7 @@ export const RightContent = styled.div`
 `;
 
 export const ContentInfo = styled.div`
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -101,5 +101,5 @@ export const Value = styled.span`
   font-weight: 400;
   font-size: 2rem;
   text-align: center;
-  margin-top: 55px;
+  margin-top: 95px;
 `;
