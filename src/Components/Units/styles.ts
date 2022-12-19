@@ -32,7 +32,7 @@ export const Unit = styled.div`
   border: none;
   width: 240px;
   height: 50px;
-  border-radius: 50px;
+  border-radius: 10px;
   background: ${(props) => props.theme["default-background"]};
   color: ${(props) => props.theme["blue-500"]};
   font-size: 1.5rem;
@@ -45,14 +45,23 @@ export const Unit = styled.div`
 `;
 export const Button = styled.button`
   border: none;
-  width: 140px;
+  width: 150px;
   height: 50px;
-  border-radius: 50px;
+  border-radius: 10px;
   background: ${(props) => props.theme["blue-700"]};
   color: ${(props) => props.theme["white"]};
   font-size: 1.5rem;
   margin-left: 3rem;
   cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  rect {
+    fill: ${(props) => props.theme["white"]};
+  }
 
   &:not(:disabled):hover {
     filter: brightness(0.8);
@@ -64,7 +73,10 @@ export const Button = styled.button`
   }
 `;
 
-export const FormContainer = styled.form``;
+export const FormContainer = styled.form`
+  display: flex;
+  flex-direction: row;
+`;
 export const InputSearchUnit = styled.input`
   border: none;
   border-bottom: 1px solid ${(props) => props.theme["default-background"]};

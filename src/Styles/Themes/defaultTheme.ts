@@ -8,4 +8,8 @@ export const defaultTheme = {
   "default-background": "#CCD5DA",
   "card-dashboard-background": "#E5EAEC",
   "button-hover": "#B2DBF1",
+
+  inAlert: "#F4FE85",
+  inOperation: "#ACF5A0",
+  inDowntime: "#F5A0A0",
 } as const;

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AssetsContext } from "../../../../Context/AssetsContext";
+import { AssetsContext } from "../../../../../Context/AssetsContext";
 
 export const OptionChartHelphscore = () => {
   const { asset } = useContext(AssetsContext);
@@ -7,7 +7,7 @@ export const OptionChartHelphscore = () => {
   const options = {
     chart: {
       width: 350,
-      height: 200,
+      height: 195,
       plotBackgroundColor: null,
       plotBorderWidth: 0,
       plotShadow: false,
@@ -60,7 +60,7 @@ export const OptionChartHelphscore = () => {
         data: [
           { name: "Vida útil", y: asset?.healthscore },
           {
-            name: "Defasagem",
+            name: "Depreciação",
             y: asset?.healthscore ? 100 - asset?.healthscore : "",
             color: "#000000",
           },

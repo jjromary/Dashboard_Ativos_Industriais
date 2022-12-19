@@ -1,16 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
+import { Controller, useForm } from "react-hook-form";
+import * as z from 'zod';
+import search from "../../Assets/search.svg";
 import { AssetsContext } from "../../Context/AssetsContext";
 import { Attribute, Button, ButtonContainer, CardAssetsContainer, ContentData, Name } from "./styles";
-import search from "../../Assets/search.svg";
-import * as z from 'zod'
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 interface CardAsstesProps {
   id: number;
   name: string;
   model: string;
   sensors: string;
-  status: string;
+  statusType: "inAlert" | "inOperation" | "inDowntime";
 }
 
 const AssetFormSchema = z.object({
@@ -19,7 +19,7 @@ const AssetFormSchema = z.object({
 
 type AssetFormInputs = z.infer<typeof AssetFormSchema>
 
-export default function CardAssets({ name, model, sensors, id }: CardAsstesProps) {
+export default function CardAssets({ name, model, sensors, id, statusType }: CardAsstesProps) {
   const { loadAsset } = useContext(AssetsContext);
 
   const idString = id.toString()
@@ -34,7 +34,6 @@ export default function CardAssets({ name, model, sensors, id }: CardAsstesProps
 
   const handleAssetForm = async (data: AssetFormInputs) => {
     await loadAsset(data.id)
-    console.log("test context", data.id)
   }
 
   return (
@@ -44,7 +43,7 @@ export default function CardAssets({ name, model, sensors, id }: CardAsstesProps
         name="id"
         render={({ field }) => {
           return (
-            <CardAssetsContainer >
+            <CardAssetsContainer variant={statusType}>
               <ButtonContainer
                 onValueChange={field.onChange}
                 value={field.value}
@@ -67,6 +66,10 @@ export default function CardAssets({ name, model, sensors, id }: CardAsstesProps
               <ContentData>
                 <Attribute>Modelo: </Attribute>
                 <Name>{model}</Name>
+              </ContentData>
+              <ContentData>
+                <Attribute>Status: </Attribute>
+                <Name>{statusType === "inAlert" ? "Em alerta" : statusType === "inOperation" ? "Em Operação" : statusType === "inDowntime" ? "Em Parada" : ""}</Name>
               </ContentData>
             </CardAssetsContainer>
           )
