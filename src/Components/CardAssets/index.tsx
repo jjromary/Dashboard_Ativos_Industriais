@@ -10,7 +10,7 @@ interface CardAsstesProps {
   name: string;
   model: string;
   sensors: string;
-  status: string;
+  statusType: "inAlert" | "inOperation" | "inDowntime";
 }
 
 const AssetFormSchema = z.object({
@@ -19,8 +19,9 @@ const AssetFormSchema = z.object({
 
 type AssetFormInputs = z.infer<typeof AssetFormSchema>
 
-export default function CardAssets({ name, model, sensors, id }: CardAsstesProps) {
+export default function CardAssets({ name, model, sensors, id, statusType }: CardAsstesProps) {
   const { loadAsset } = useContext(AssetsContext);
+  const { asset } = useContext(AssetsContext);
 
   const idString = id.toString()
 
@@ -44,7 +45,7 @@ export default function CardAssets({ name, model, sensors, id }: CardAsstesProps
         name="id"
         render={({ field }) => {
           return (
-            <CardAssetsContainer >
+            <CardAssetsContainer variant={statusType}>
               <ButtonContainer
                 onValueChange={field.onChange}
                 value={field.value}
@@ -67,6 +68,10 @@ export default function CardAssets({ name, model, sensors, id }: CardAsstesProps
               <ContentData>
                 <Attribute>Modelo: </Attribute>
                 <Name>{model}</Name>
+              </ContentData>
+              <ContentData>
+                <Attribute>Status: </Attribute>
+                <Name>{statusType === "inAlert" ? "Em alerta" : statusType === "inOperation" ? "Em Operação" : statusType === "inDowntime" ? "Em Parada" : ""}</Name>
               </ContentData>
             </CardAssetsContainer>
           )

@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import camera from "../../../../Assets/camera.svg"
 import CardAssets from "../../../../Components/CardAssets";
 import CardDashboard from "../../../../Components/CardDashboard";
 import { AssetsContext } from '../../../../Context/AssetsContext';
@@ -6,11 +7,11 @@ import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import highchartsMore from "highcharts/highcharts-more.js";
 import solidGauge from "highcharts/modules/solid-gauge.js";
-import { BottomContent, CardsContainer, ChartContent, ContentInfo, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
-import { OptionChartHelphscore } from './optionsChartHelphscore';
-import { optionsChartRPM } from './optionsChartRPM';
-import { optionsChartTotalCollection } from './optionsChartTotalCollection';
-import { optionChartHoursCollection } from './optionChartHoursCollection';
+import { BottomContent, CardsContainer, ChartContent, ContentInfo, ImageContent, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
+import { OptionChartHelphscore } from './OptionChats/optionsChartHelphscore';
+import { optionsChartRPM } from './OptionChats/optionsChartRPM';
+import { optionsChartTotalCollection } from './OptionChats/optionsChartTotalCollection';
+import { optionChartHoursCollection } from './OptionChats/optionChartHoursCollection';
 
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
@@ -30,8 +31,8 @@ export default function DashBoardAsset() {
                 name={asset.name}
                 model={asset.model}
                 sensors={asset.sensors}
-                status={asset.status}
                 id={asset.id}
+                statusType={asset.status}
               />
             )
           })}
@@ -42,12 +43,17 @@ export default function DashBoardAsset() {
 
       <LeftContent>
         <CardDashboard width="450px" height="450px" title={asset?.name} fontSize="1.5rem">
-          <img src={asset?.image} width="350px" height="250px" />
+          <ImageContent>
+            {asset &&
+              <img src={asset?.image} width="350px" height="250px" />
+            }
+            <img src={!asset?.image ? camera : ""} width="50px" height="50px" />
+          </ImageContent>
           <ContentInfo>
             <p>Senso: <span>{asset?.sensors}</span></p>
           </ContentInfo>
           <ContentInfo>
-            <p>Status: <span>{asset?.status}</span></p>
+            <p>Status: <span>{asset?.status === "inAlert" ? "Em alerta" : asset?.status === "inOperation" ? "Em Operação" : asset?.status === "inDowntime" ? "Em Parada" : ""}</span></p>
           </ContentInfo>
           <ContentInfo>
             <p>Model: <span>{asset?.model}</span></p>
@@ -67,12 +73,14 @@ export default function DashBoardAsset() {
           title="Saúde do Ativo"
           fontSize="1.5rem"
         >
-          <ChartContent>
-            <HighchartsReact
-              highcharts={Highcharts}
-              options={OptionChartHelphscore()}
-            />
-          </ChartContent>
+          {asset &&
+            <ChartContent>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={OptionChartHelphscore()}
+              />
+            </ChartContent>
+          }
         </CardDashboard>
       </LeftContent>
 
@@ -85,12 +93,14 @@ export default function DashBoardAsset() {
             title=" Tacômetro"
             fontSize="1.5rem"
           >
-            <ChartContent>
-              <HighchartsReact
-                highcharts={Highcharts}
-                options={optionsChartRPM()}
-              />
-            </ChartContent>
+            {asset &&
+              <ChartContent>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={optionsChartRPM()}
+                />
+              </ChartContent>
+            }
           </CardDashboard>
           <SpecificationsContent>
             <CardDashboard
@@ -122,12 +132,14 @@ export default function DashBoardAsset() {
             title="Total de Coletas"
             fontSize="2rem"
           >
-            <ChartContent>
-              <HighchartsReact
-                highcharts={Highcharts}
-                options={optionsChartTotalCollection()}
-              />
-            </ChartContent>
+            {asset &&
+              <ChartContent>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={optionsChartTotalCollection()}
+                />
+              </ChartContent>
+            }
           </CardDashboard>
           <CardDashboard
             width="49%"
@@ -135,12 +147,14 @@ export default function DashBoardAsset() {
             title="Total de Horas Coletadas"
             fontSize="2rem"
           >
-            <ChartContent>
-              <HighchartsReact
-                highcharts={Highcharts}
-                options={optionChartHoursCollection()}
-              />
-            </ChartContent>
+            {asset &&
+              <ChartContent>
+                <HighchartsReact
+                  highcharts={Highcharts}
+                  options={optionChartHoursCollection()}
+                />
+              </ChartContent>
+            }
           </CardDashboard>
 
         </BottomContent>

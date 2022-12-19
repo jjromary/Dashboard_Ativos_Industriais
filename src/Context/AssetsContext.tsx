@@ -5,7 +5,7 @@ interface Assets {
   id: number;
   sensors: string;
   model: string;
-  status: string;
+  status: 'inAlert' | 'inOperation' | "inDowntime";
   healthscore: number;
   name: string;
   image: string;
@@ -26,7 +26,7 @@ interface Asset {
   id: number;
   sensors: string;
   model: string;
-  status: string;
+  status: 'inAlert' | 'inOperation' | "inDowntime";
   healthscore: number;
   name: string;
   image: string;

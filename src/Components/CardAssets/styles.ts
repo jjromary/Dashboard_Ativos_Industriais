@@ -1,10 +1,21 @@
 import styled from "styled-components";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 
-export const CardAssetsContainer = styled.div`
+interface StatusTypeProps {
+  variant?: "inAlert" | "inOperation" | "inDowntime";
+}
+
+export const CardAssetsContainer = styled.div<StatusTypeProps>`
   width: 200px;
   min-height: 87px;
-  background: ${(props) => props.theme["default-background"]};
+  background: ${(props) =>
+    props.variant === "inAlert"
+      ? props.theme["inAlert"]
+      : props.variant === "inOperation"
+      ? props.theme["inOperation"]
+      : props.variant === "inDowntime"
+      ? props.theme["inDowntime"]
+      : ""};
   border-radius: 10px;
   border: none;
   margin: 0 0.625rem;

@@ -31,6 +31,14 @@ export const CardsContainer = styled.div`
   }
 `;
 
+export const ImageContent = styled.div`
+  width: 350px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const ChartContent = styled.div`
   display: flex;
   align-items: center;
