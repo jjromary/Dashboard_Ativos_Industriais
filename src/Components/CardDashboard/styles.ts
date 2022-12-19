@@ -13,7 +13,8 @@ export const CardDashboardContainer = styled.div<CardDashboardContainerProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: 10px;
-  background: ${(props) => props.theme["card-dashboard-background"]};
+  /* background: ${(props) => props.theme["card-dashboard-background"]}; */
+  background: white;
   box-shadow: 0px 22px 5px -10px rgba(0, 0, 0, 0.25);
 
   display: flex;

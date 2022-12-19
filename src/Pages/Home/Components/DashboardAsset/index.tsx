@@ -1,19 +1,19 @@
-import { useContext } from 'react';
-import ativo from '../../../../Assets/ativo.svg'
+import { useContext, useEffect, useRef, useState } from 'react';
 import CardAssets from "../../../../Components/CardAssets";
 import CardDashboard from "../../../../Components/CardDashboard";
 import { AssetsContext } from '../../../../Context/AssetsContext';
-import { BottomContent, CardsContainer, ContentInfo, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
+import * as Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import { BottomContent, CardsContainer, ChartContent, ContentInfo, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
+import { OptionChart } from './optionChart';
+
+
 
 export default function DashBoardAsset() {
   const { assets } = useContext(AssetsContext);
   const { asset } = useContext(AssetsContext);
 
 
-
-  // console.log(asset?.metrics.lastUptimeAt.substring(0, 10).split("-").reverse().join("-"))
-
-  console.log("teste horas", asset?.metrics.lastUptimeAt.substring(11, 19))
 
   return (
     <InfoContainer>
@@ -63,6 +63,14 @@ export default function DashBoardAsset() {
           title="Saúde do Ativo"
           fontSize="1.5rem"
         >
+          <ChartContent>
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={OptionChart()}
+            // width="300px"
+            // height="400px"
+            />
+          </ChartContent>
         </CardDashboard>
       </LeftContent>
 
