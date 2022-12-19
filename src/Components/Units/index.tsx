@@ -1,7 +1,8 @@
-import { MouseEventHandler, ReactNode, useContext, useState } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AssetsContext } from "../../Context/AssetsContext";
 import { Button, FormContainer, Title, Unit, UnitsContainer, InputSearchUnit, UnitsContent } from "./styles";
+import searchWhite from "../../Assets/search-White.svg";
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -52,7 +53,8 @@ export default function Units() {
           {...register('query')}
         />
         <Button type="submit" disabled={isSubmitting}>
-          Visualizar
+          Buscar
+          <img src={searchWhite} width={20} height={20} />
         </Button>
       </FormContainer>
     </UnitsContainer >

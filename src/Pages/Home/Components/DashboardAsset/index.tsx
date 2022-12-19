@@ -1,17 +1,17 @@
-import { useContext } from 'react';
-import camera from "../../../../Assets/camera.svg"
-import CardAssets from "../../../../Components/CardAssets";
-import CardDashboard from "../../../../Components/CardDashboard";
-import { AssetsContext } from '../../../../Context/AssetsContext';
 import * as Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import highchartsMore from "highcharts/highcharts-more.js";
 import solidGauge from "highcharts/modules/solid-gauge.js";
-import { BottomContent, CardsContainer, ChartContent, ContentInfo, ImageContent, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
+import { useContext } from 'react';
+import camera from "../../../../Assets/camera.svg";
+import CardAssets from "../../../../Components/CardAssets";
+import CardDashboard from "../../../../Components/CardDashboard";
+import { AssetsContext } from '../../../../Context/AssetsContext';
+import { optionChartHoursCollection } from './OptionChats/optionChartHoursCollection';
 import { OptionChartHelphscore } from './OptionChats/optionsChartHelphscore';
 import { optionsChartRPM } from './OptionChats/optionsChartRPM';
 import { optionsChartTotalCollection } from './OptionChats/optionsChartTotalCollection';
-import { optionChartHoursCollection } from './OptionChats/optionChartHoursCollection';
+import { BottomContent, CardsContainer, ChartContent, ContentInfo, ImageContent, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
 
 highchartsMore(Highcharts);
 solidGauge(Highcharts);
@@ -44,10 +44,7 @@ export default function DashBoardAsset() {
       <LeftContent>
         <CardDashboard width="450px" height="450px" title={asset?.name} fontSize="1.5rem">
           <ImageContent>
-            {asset &&
-              <img src={asset?.image} width="350px" height="250px" />
-            }
-            <img src={!asset?.image ? camera : ""} width="50px" height="50px" />
+            <img src={asset?.image ? asset.image : camera} width="350px" height="250px" />
           </ImageContent>
           <ContentInfo>
             <p>Senso: <span>{asset?.sensors}</span></p>
@@ -68,7 +65,7 @@ export default function DashBoardAsset() {
         </CardDashboard>
 
         <CardDashboard
-          width="400px"
+          width="450px"
           height="250px"
           title="Saúde do Ativo"
           fontSize="1.5rem"
@@ -128,9 +125,9 @@ export default function DashBoardAsset() {
 
           <CardDashboard
             width="49%"
-            height="335px"
+            height="350px"
             title="Total de Coletas"
-            fontSize="2rem"
+            fontSize="1.5rem"
           >
             {asset &&
               <ChartContent>
@@ -143,9 +140,9 @@ export default function DashBoardAsset() {
           </CardDashboard>
           <CardDashboard
             width="49%"
-            height="335px"
+            height="350px"
             title="Total de Horas Coletadas"
-            fontSize="2rem"
+            fontSize="1.5rem"
           >
             {asset &&
               <ChartContent>

@@ -95,11 +95,9 @@ export function AssetsProvider({ children }: AssetsProviderProps) {
   }
 
   useEffect(() => {
-    loadAsset()
     fetchAssets()
     loadUnits()
   }, [])
-
 
   return (
     <AssetsContext.Provider value={{ assets, asset, loadAsset, units, fetchAssets }}>

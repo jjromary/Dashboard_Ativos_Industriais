@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
+import { Controller, useForm } from "react-hook-form";
+import * as z from 'zod';
+import search from "../../Assets/search.svg";
 import { AssetsContext } from "../../Context/AssetsContext";
 import { Attribute, Button, ButtonContainer, CardAssetsContainer, ContentData, Name } from "./styles";
-import search from "../../Assets/search.svg";
-import * as z from 'zod'
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 interface CardAsstesProps {
   id: number;
   name: string;
@@ -21,7 +21,6 @@ type AssetFormInputs = z.infer<typeof AssetFormSchema>
 
 export default function CardAssets({ name, model, sensors, id, statusType }: CardAsstesProps) {
   const { loadAsset } = useContext(AssetsContext);
-  const { asset } = useContext(AssetsContext);
 
   const idString = id.toString()
 
@@ -35,7 +34,6 @@ export default function CardAssets({ name, model, sensors, id, statusType }: Car
 
   const handleAssetForm = async (data: AssetFormInputs) => {
     await loadAsset(data.id)
-    console.log("test context", data.id)
   }
 
   return (
