@@ -50,7 +50,7 @@ interface Units {
 }
 interface AssetsContextType {
   assets: Assets[];
-  asset: Assets | undefined | null;
+  asset: Asset | undefined | null;
   units: Units[];
   fetchAssets: (query?: string) => Promise<void>
   loadAsset: (query?: string) => Promise<void>

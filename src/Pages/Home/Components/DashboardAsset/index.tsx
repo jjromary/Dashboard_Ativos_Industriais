@@ -1,19 +1,23 @@
 import { useContext } from 'react';
-import ativo from '../../../../Assets/ativo.svg'
 import CardAssets from "../../../../Components/CardAssets";
 import CardDashboard from "../../../../Components/CardDashboard";
 import { AssetsContext } from '../../../../Context/AssetsContext';
-import { BottomContent, CardsContainer, ContentInfo, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
+import * as Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import highchartsMore from "highcharts/highcharts-more.js";
+import solidGauge from "highcharts/modules/solid-gauge.js";
+import { BottomContent, CardsContainer, ChartContent, ContentInfo, InfoContainer, LeftContent, RightContent, SpecificationsContent, TopContent, Value } from "./styles";
+import { OptionChartHelphscore } from './optionsChartHelphscore';
+import { optionsChartRPM } from './optionsChartRPM';
+import { optionsChartTotalCollection } from './optionsChartTotalCollection';
+import { optionChartHoursCollection } from './optionChartHoursCollection';
+
+highchartsMore(Highcharts);
+solidGauge(Highcharts);
 
 export default function DashBoardAsset() {
-  const { assets } = useContext(AssetsContext);
   const { asset } = useContext(AssetsContext);
-
-
-
-  // console.log(asset?.metrics.lastUptimeAt.substring(0, 10).split("-").reverse().join("-"))
-
-  console.log("teste horas", asset?.metrics.lastUptimeAt.substring(11, 19))
+  const { assets } = useContext(AssetsContext);
 
   return (
     <InfoContainer>
@@ -63,6 +67,12 @@ export default function DashBoardAsset() {
           title="Saúde do Ativo"
           fontSize="1.5rem"
         >
+          <ChartContent>
+            <HighchartsReact
+              highcharts={Highcharts}
+              options={OptionChartHelphscore()}
+            />
+          </ChartContent>
         </CardDashboard>
       </LeftContent>
 
@@ -72,9 +82,15 @@ export default function DashBoardAsset() {
           <CardDashboard
             width="49%"
             height="100%"
-            title="RPM"
+            title=" Tacômetro"
             fontSize="1.5rem"
           >
+            <ChartContent>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={optionsChartRPM()}
+              />
+            </ChartContent>
           </CardDashboard>
           <SpecificationsContent>
             <CardDashboard
@@ -83,7 +99,7 @@ export default function DashBoardAsset() {
               title="Temperatura Máxima"
               fontSize="1.5rem"
             >
-              <Value>{asset?.specifications.maxTemp ? asset?.specifications.maxTemp + "ºc" : ""}</Value>
+              <Value>{asset?.specifications.maxTemp ? asset?.specifications.maxTemp + "ºc" : "-"}</Value>
             </CardDashboard>
 
             <CardDashboard
@@ -92,7 +108,7 @@ export default function DashBoardAsset() {
               title="Potência kWh"
               fontSize="1.5rem"
             >
-              <Value>{asset?.specifications.power ? asset?.specifications.power : ""}</Value>
+              <Value>{asset?.specifications.power ? asset?.specifications.power : "-"}</Value>
             </CardDashboard>
           </SpecificationsContent>
 
@@ -106,6 +122,12 @@ export default function DashBoardAsset() {
             title="Total de Coletas"
             fontSize="2rem"
           >
+            <ChartContent>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={optionsChartTotalCollection()}
+              />
+            </ChartContent>
           </CardDashboard>
           <CardDashboard
             width="49%"
@@ -113,6 +135,12 @@ export default function DashBoardAsset() {
             title="Total de Horas Coletadas"
             fontSize="2rem"
           >
+            <ChartContent>
+              <HighchartsReact
+                highcharts={Highcharts}
+                options={optionChartHoursCollection()}
+              />
+            </ChartContent>
           </CardDashboard>
 
         </BottomContent>
