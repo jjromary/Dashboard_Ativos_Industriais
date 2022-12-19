@@ -32,16 +32,18 @@ export default function Units() {
   }
 
   return (
-    <UnitsContainer >
-      <Title>Unidades</Title>
+    <UnitsContainer>
       <UnitsContent>
-        {units.map((unit) => {
-          return (
-            <Unit key={unit.id}>
-              {unit.name}
-            </Unit>
-          )
-        })}
+        <Title>Unidades</Title>
+        <UnitsContent>
+          {units.map((unit) => {
+            return (
+              <Unit key={unit.id}>
+                {unit.name}
+              </Unit>
+            )
+          })}
+        </UnitsContent>
       </UnitsContent>
       <FormContainer onSubmit={handleSubmit(handleSearchUnitForm)}>
         <InputSearchUnit

@@ -1,10 +1,7 @@
-import Highcharts from "highcharts";
-import React from "react";
-
 import { useContext } from "react";
 import { AssetsContext } from "../../../../Context/AssetsContext";
 
-export const OptionChart = () => {
+export const OptionChartHelphscore = () => {
   const { asset } = useContext(AssetsContext);
 
   const options = {
