@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import * as z from 'zod';
 import searchWhite from "../../Assets/search-White.svg";
 import { AssetsContext } from "../../Context/AssetsContext";
-import { Button, FormContainer, InputSearchUnit, Unit, UnitsContainer, UnitsContent } from "./styles";
+import { Button, FormContainer, InputSearchUnit, TopBarContainer, TopBarContent, Unit } from "./styles";
 
 const unitFormSchema = z.object({
   query: z.string(),
@@ -14,7 +14,7 @@ const unitFormSchema = z.object({
 type UnitFormInput = z.infer<typeof unitFormSchema>;
 
 
-export default function Units() {
+export default function TopBar() {
   const { fetchAssets } = useContext(AssetsContext);
 
 
@@ -32,12 +32,13 @@ export default function Units() {
     await fetchAssets(data.query)
   }
 
-  return (
-    <UnitsContainer>
 
-      <UnitsContent>
+  return (
+    <TopBarContainer>
+
+      <TopBarContent>
         <nav>
-          <UnitsContent>
+          <TopBarContent>
             <NavLink to={'/'} title="Ativos">
               <Unit>
                 Ativos
@@ -48,10 +49,10 @@ export default function Units() {
                 Usuários
               </Unit>
             </NavLink>
-          </UnitsContent>
+          </TopBarContent>
         </nav>
 
-      </UnitsContent>
+      </TopBarContent>
 
       <FormContainer onSubmit={handleSubmit(handleSearchUnitForm)}>
         <InputSearchUnit
@@ -64,6 +65,6 @@ export default function Units() {
           <img src={searchWhite} width={20} height={20} />
         </Button>
       </FormContainer>
-    </UnitsContainer >
+    </TopBarContainer >
   )
 }

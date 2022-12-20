@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const UnitsContainer = styled.div`
+export const TopBarContainer = styled.div`
   width: 100%;
   height: 69px;
   background: ${(props) => props.theme["card-dashboard-background"]};
@@ -19,7 +19,7 @@ export const Title = styled.span`
   font-weight: bold;
 `;
 
-export const UnitsContent = styled.div`
+export const TopBarContent = styled.div`
   min-width: 500px;
   margin-left: 2rem;
   display: flex;
