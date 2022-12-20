@@ -43,15 +43,10 @@ interface Asset {
   unitId: number;
   companyId: number;
 }
-interface Units {
-  id: number,
-  name: string,
-  companyId: number;
-}
+
 interface AssetsContextType {
   assets: Assets[];
   asset: Asset | undefined | null;
-  units: Units[];
   fetchAssets: (query?: string) => Promise<void>
   loadAsset: (query?: string) => Promise<void>
 }
@@ -66,7 +61,6 @@ export function AssetsProvider({ children }: AssetsProviderProps) {
 
   const [assets, setAssets] = useState<Assets[]>([])
   const [asset, setAsset] = useState<Asset>()
-  const [units, setUnits] = useState<Units[]>([])
 
   const fetchAssets = async (query?: string) => {
     const response = await api.get('/assets', {
@@ -88,19 +82,14 @@ export function AssetsProvider({ children }: AssetsProviderProps) {
     setAsset(response.data)
   }
 
-  const loadUnits = async () => {
-    const repsonse = await api.get('/units')
 
-    setUnits(repsonse.data)
-  }
 
   useEffect(() => {
     fetchAssets()
-    loadUnits()
   }, [])
 
   return (
-    <AssetsContext.Provider value={{ assets, asset, loadAsset, units, fetchAssets }}>
+    <AssetsContext.Provider value={{ assets, asset, loadAsset, fetchAssets }}>
       {children}
     </AssetsContext.Provider>
   )

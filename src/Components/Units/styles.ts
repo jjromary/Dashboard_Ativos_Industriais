@@ -5,7 +5,7 @@ export const UnitsContainer = styled.div`
   height: 69px;
   background: ${(props) => props.theme["card-dashboard-background"]};
   border-radius: 0.625rem;
-  margin-top: 1rem;
+  margin: 1rem 0 2rem 0;
 
   display: flex;
   align-items: center;
@@ -17,7 +17,6 @@ export const UnitsContainer = styled.div`
 export const Title = styled.span`
   font-size: 2rem;
   font-weight: bold;
-  color: ${(props) => props.theme["blue-700"]};
 `;
 
 export const UnitsContent = styled.div`
@@ -26,6 +25,14 @@ export const UnitsContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  nav {
+    a {
+      color: ${(props) => props.theme["blue-500"]};
+      text-decoration-line: none;
+      border-radius: 10px;
+    }
+  }
 `;
 
 export const Unit = styled.div`
@@ -34,7 +41,7 @@ export const Unit = styled.div`
   height: 50px;
   border-radius: 10px;
   background: ${(props) => props.theme["default-background"]};
-  color: ${(props) => props.theme["blue-500"]};
+
   font-size: 1.5rem;
   text-align: center;
   display: flex;

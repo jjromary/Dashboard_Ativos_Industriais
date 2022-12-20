@@ -4,7 +4,6 @@ export const InfoContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  margin-top: 2rem;
   gap: 0 1.875rem;
 `;
 
