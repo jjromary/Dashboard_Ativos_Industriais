@@ -1,10 +1,11 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { AssetsContext } from "../../Context/AssetsContext";
-import { Button, FormContainer, Title, Unit, UnitsContainer, InputSearchUnit, UnitsContent } from "./styles";
+import { NavLink } from 'react-router-dom';
+import * as z from 'zod';
 import searchWhite from "../../Assets/search-White.svg";
-import * as z from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { AssetsContext } from "../../Context/AssetsContext";
+import { Button, FormContainer, InputSearchUnit, Unit, UnitsContainer, UnitsContent } from "./styles";
 
 const unitFormSchema = z.object({
   query: z.string(),
@@ -14,7 +15,6 @@ type UnitFormInput = z.infer<typeof unitFormSchema>;
 
 
 export default function Units() {
-  const { units } = useContext(AssetsContext);
   const { fetchAssets } = useContext(AssetsContext);
 
 
@@ -34,18 +34,25 @@ export default function Units() {
 
   return (
     <UnitsContainer>
+
       <UnitsContent>
-        <Title>Unidades</Title>
-        <UnitsContent>
-          {units.map((unit) => {
-            return (
-              <Unit key={unit.id}>
-                {unit.name}
+        <nav>
+          <UnitsContent>
+            <NavLink to={'/'} title="Ativos">
+              <Unit>
+                Ativos
               </Unit>
-            )
-          })}
-        </UnitsContent>
+            </NavLink>
+            <NavLink to={'/users'} title="Usuários">
+              <Unit>
+                Usuários
+              </Unit>
+            </NavLink>
+          </UnitsContent>
+        </nav>
+
       </UnitsContent>
+
       <FormContainer onSubmit={handleSubmit(handleSearchUnitForm)}>
         <InputSearchUnit
           type="text"
