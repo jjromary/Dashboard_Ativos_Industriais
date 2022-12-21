@@ -167,7 +167,7 @@ Error generating stack: `+o.message+`
   width: 300px;
   border-radius: 10px;
   padding-left: 1rem;
-`,ES=Hg({query:Xg()});function MS(){const{fetchAssets:t}=ht.exports.useContext(Oi),{register:e,handleSubmit:i,formState:{isSubmitting:r}}=Fg({resolver:Ug(ES)});return Ut(kS,{children:[mt(Sp,{children:mt("nav",{children:Ut(Sp,{children:[mt(zd,{to:"/",title:"Ativos",children:mt(kp,{children:"Ativos"})}),mt(zd,{to:"/users",title:"Usuários",children:mt(kp,{children:"Usuários"})})]})})}),Ut(bS,{onSubmit:i(async o=>{await t(o.query)}),children:[mt(PS,{type:"text",placeholder:"Buscar Ativos",...e("query")}),Ut(CS,{type:"submit",disabled:r,children:["Buscar",mt("img",{src:SS,width:20,height:20})]})]})]})}const AS=Bt.div`
+`,ES=Hg({query:Xg()});function MS(){const{fetchAssets:t}=ht.exports.useContext(Oi),{register:e,handleSubmit:i,formState:{isSubmitting:r}}=Fg({resolver:Ug(ES)});return Ut(kS,{children:[mt(Sp,{children:mt("nav",{children:Ut(Sp,{children:[mt(zd,{to:"/tractian_dashboard",title:"Ativos",children:mt(kp,{children:"Ativos"})}),mt(zd,{to:"/tractian_dashboard/users",title:"Usuários",children:mt(kp,{children:"Usuários"})})]})})}),Ut(bS,{onSubmit:i(async o=>{await t(o.query)}),children:[mt(PS,{type:"text",placeholder:"Buscar Ativos",...e("query")}),Ut(CS,{type:"submit",disabled:r,children:["Buscar",mt("img",{src:SS,width:20,height:20})]})]})]})}const AS=Bt.div`
   width: 90%;
   margin: 0 auto;
   height: 100vh;
