@@ -7,10 +7,9 @@ import Users from "./Pages/Users";
 export function Router() {
   return (
     <Routes>
-      <Route path='/' element={<DefaultLayout />}>
-        <Route path="/" element={<Home />} />
+      <Route path='/[tractian_dashboard]' element={<DefaultLayout />}>
+        <Route path="/[tractian_dashboard]" element={<Home />} />
         <Route path="/users" element={<Users />} />
-
       </Route>
     </Routes>
   )

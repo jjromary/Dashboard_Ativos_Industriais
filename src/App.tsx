@@ -8,7 +8,7 @@ import { defaultTheme } from "./Styles/Themes/defaultTheme";
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter>
+      <BrowserRouter basename={"/"}>
         <AssetsProvider>
           <Router />
 
