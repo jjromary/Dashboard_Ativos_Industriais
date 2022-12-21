@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { AssetsProvider } from "./Context/AssetsContext";
 import { Router } from "./Router";
@@ -8,12 +8,12 @@ import { defaultTheme } from "./Styles/Themes/defaultTheme";
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <BrowserRouter basename='/tractian_dashboard'>
+      <HashRouter basename='/tractian_dashboard'>
         <AssetsProvider>
           <Router />
 
         </AssetsProvider>
-      </BrowserRouter>
+      </HashRouter>
       <GlobalStyles />
     </ThemeProvider>
   )
