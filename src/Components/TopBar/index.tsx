@@ -39,12 +39,12 @@ export default function TopBar() {
       <TopBarContent>
         <nav>
           <TopBarContent>
-            <NavLink to={'/'} title="Ativos">
+            <NavLink to={'/tractian_dashboard'} title="Ativos">
               <Unit>
                 Ativos
               </Unit>
             </NavLink>
-            <NavLink to={'/users'} title="Usuários">
+            <NavLink to={'/tractian_dashboard/users'} title="Usuários">
               <Unit>
                 Usuários
               </Unit>
