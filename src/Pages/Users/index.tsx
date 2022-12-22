@@ -34,14 +34,24 @@ export default function Users() {
 
   const loadUnits = async () => {
     const response = await api.get('/units')
-    setUsers(response.data)
+    setUnits(response.data)
+  }
+
+  const loadCompany = async () => {
+    const response = await api.get('/companies')
+    setCompanny(response.data)
   }
 
   useEffect(() => {
     loadUsers()
     loadUnits()
+    loadCompany()
   }, [])
 
+  const unitsWithId = units.map(unit => ({ id: unit.id, name: unit.name }));
+  const companiesWithId = company.map(comp => ({ id: comp.id, name: comp.name }));
+
+  console.log("unitsWithId", unitsWithId)
 
   return (
     <UsersContainer>
@@ -59,15 +69,18 @@ export default function Users() {
             </thead>
             <tbody>
               {users.map((user) => {
+                const unit = unitsWithId.find(unit => unit.id === user.unitId);
+                const company = companiesWithId.find(comp => comp.id === user.companyId);
                 return (
                   <tr>
                     <td>{user.name}</td>
                     <td>{user.email}</td>
-                    <td>{user.unitId}</td>
-                    <td>{user.companyId}</td>
+                    <td>{unit?.name}</td>
+                    <td>{company?.name}</td>
                   </tr>
                 )
               })}
+
             </tbody>
           </table>
         </UserContent>
