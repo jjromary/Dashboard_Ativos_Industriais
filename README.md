@@ -13,6 +13,7 @@
 ## 💻 Sobre o projeto
 
  - Esse prrojeto é um teste técnico para uma vaga de Front End Software Engineer na empresa TARCTIAN.
+ - Link para acessar o projeto: [Dashboard](https://tractian-dashboard-swart.vercel.app/)
 
 
 ## 🛠 Tecnologias
