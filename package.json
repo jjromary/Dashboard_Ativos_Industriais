@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "preview": "vite preview"
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
