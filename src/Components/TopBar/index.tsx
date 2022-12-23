@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink } from 'react-router-dom';
 import * as z from 'zod';
-import searchWhite from "../../Assets/search-White.svg";
+import searchWhite from "../../Assets/search-white.svg";
 import { AssetsContext } from "../../Context/AssetsContext";
 import { Button, FormContainer, InputSearchUnit, TopBarContainer, TopBarContent, Unit } from "./styles";
 
